@@ -1,0 +1,4 @@
+@use "./partials/colors.scss" as *;
+@forward "./partials/colors.scss";
+@use "./partials/sizes.scss" as *;
+@forward "./partials/sizes.scss";

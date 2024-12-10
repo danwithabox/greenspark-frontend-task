@@ -1,0 +1,51 @@
+@use "./scss/base.scss" as *;
+
+// This file is not loaded for every component via the `preprocessorOptions` in `vite.config.ts`. For that, see `base.scss`.
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Cabin;
+    src: url("./fonts/Cabin-VariableFont_wdth\,wght.ttf");
+    font-style: normal;
+}
+@font-face {
+    font-family: Cabin;
+    src: url("./fonts/Cabin-Italic-VariableFont_wdth\,wght.ttf");
+    font-style: italic;
+}
+
+body {
+    min-height: 100vh;
+}
+body, .v-popper__popper *, .v-popper__inner div {
+    line-height: 1.6;
+    font-family: Cabin;
+    font-size: $font-size-sm;
+}
+
+#app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-weight: normal;
+}
+
+@media (min-width: 1024px) {
+    body {
+        display: flex;
+        place-items: center;
+    }
+
+    #app {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 0 2rem;
+    }
+}

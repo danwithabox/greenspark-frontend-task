@@ -1,0 +1,42 @@
+{
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "packages/gs-app-widgets-pinia"
+        }
+    ],
+    "settings": {
+        "conventionalCommits.scopes": [
+            "boilerplate"
+        ],
+        "typescript.tsdk": "greenspark-frontend-task\\node_modules\\typescript\\lib",
+        "cSpell.words": [
+            "defu",
+            "greenspark",
+            "Pinia"
+        ]
+    },
+    "extensions": {
+        "recommendations": [
+            "Vue.volar",
+            "mrmlnc.vscode-scss",
+            "emmanuelbeziat.vscode-great-icons",
+            "dbaeumer.vscode-eslint",
+            "antfu.goto-alias",
+            "bradlc.vscode-tailwindcss",
+            "github.vscode-github-actions",
+            "vivaxy.vscode-conventional-commits"
+        ],
+        "unwantedRecommendations": [
+            "Vue.vscode-typescript-vue-plugin",
+            "octref.vetur",
+            "hookyqr.beautify",
+            "dbaeumer.jshint",
+            "yzhang.markdown-all-in-one",
+            "ms-vscode.vscode-typescript-tslint-plugin",
+            "prograhammer.tslint-vue",
+        ]
+    }
+}
