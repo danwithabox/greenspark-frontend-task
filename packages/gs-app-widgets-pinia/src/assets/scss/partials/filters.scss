@@ -1,0 +1,15 @@
+@mixin shadow-lg {
+    filter:
+        drop-shadow(0px 42px 76px rgba(0, 0, 0, 0.05))
+        drop-shadow(0px 27.22px 44.51px rgba(0, 0, 0, 0.038))
+        drop-shadow(0px 16.18px 24.21px rgba(0, 0, 0, 0.0304))
+        drop-shadow(0px 8.4px 12.35px rgba(0, 0, 0, 0.025))
+        drop-shadow(0px 3.42px 6.19px rgba(0, 0, 0, 0.0196))
+        drop-shadow(0px 0.78px 2.99px rgba(0, 0, 0, 0.012))
+    ;
+}
+@mixin shadow-sm {
+    filter:
+        drop-shadow(0px 0px 1.36722px rgba(0, 0, 0, 0.35))
+    ;
+}

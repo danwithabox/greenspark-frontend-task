@@ -13,9 +13,12 @@
         ],
         "typescript.tsdk": "greenspark-frontend-task\\node_modules\\typescript\\lib",
         "cSpell.words": [
+            "colour",
+            "colours",
             "defu",
             "greenspark",
-            "Pinia"
+            "Pinia",
+            "typeful"
         ]
     },
     "extensions": {
