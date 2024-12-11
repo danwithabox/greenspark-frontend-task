@@ -1,0 +1,4 @@
+@use "./_partials.scss" as *;
+@forward "./_partials.scss";
+
+// This file is loaded for every component via the `preprocessorOptions` in `vite.config.ts`. For other globals, see `main.scss`.

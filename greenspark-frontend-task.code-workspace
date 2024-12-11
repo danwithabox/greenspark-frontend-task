@@ -4,6 +4,9 @@
             "path": "."
         },
         {
+            "path": "packages/gs-lib-ui"
+        },
+        {
             "path": "packages/gs-app-widgets-pinia"
         }
     ],

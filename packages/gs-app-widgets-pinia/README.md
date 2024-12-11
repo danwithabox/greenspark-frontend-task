@@ -1,33 +1,12 @@
-# .
+# @greenspark-task/app-widgets-pinia
 
-This template should help get you started developing with Vue 3 in Vite.
+Implementation of the interview task, with Pinia as the state store.
 
-## Recommended IDE Setup
+## Run
+`npm start`
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+This will also use a custom Vite plugin to run the `@greenspark-task/lib-ui` local package's build in watch mode, to emulate hot module reload when imported UI elements are edited.
 
-## Type Support for `.vue` Imports in TS
+It's not as seamless as hot module reload for local components, but it's still snappy, and beats the alternative of rebuilding manually!
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+Alternatively, when seamless hot module reload is needed, simply develop the UI components inside their own `gs-lib-ui` workspace.

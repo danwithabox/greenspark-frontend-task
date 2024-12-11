@@ -12,7 +12,7 @@
                     </div>
                     <div class="gs-widget--header-text">
                         <div>This product {{ widget.action }}</div>
-                        <div class="text-lg font-bold">{{ widget.amount }}&nbsp;{{ widget.type }}</div>
+                        <div class="text-lg font-bold">{{ widget.amount }}&nbsp;{{ widget.impactType }}</div>
                     </div>
                 </div>
             </div>
@@ -58,21 +58,70 @@
     </div>
 </template>
 
+<script lang="ts">
+export type GSWidget_Data = {
+    /** The id of the product widget, incremental integer. */
+    id:             number,
+    /** The type of impact. */
+    impactType:     string,
+    /** The amount of impact. */
+    amount:         number,
+    /**  The action which corresponds to an impact type. */
+    action:         "collects" | "plants" | "offsets",
+    /** Describes if the widget (badge) is active. */
+    active:         boolean,
+    /** Describes if the widget is linked to the public profile. */
+    linked:         boolean,
+    /** Describes the current color of the widget. */
+    selectedColour: "white" | "black" | "blue" | "green" | "beige",
+};
+
+/**
+ * With this, we can map a colour literal to SCSS class names in a safe manner,
+ * to keep the colour source of truth inside SCSS variables, instead of hard-coding copies of those colour variables in code.
+ * 
+ * E.g.:
+ * 
+ * `<template>`:
+ * ```vue
+ * <div :class="{ [computed_colourClass]: true, }"></div>
+ * ```
+ * `<script setup lang="ts">`:
+ * ```ts
+ * const computed_colourClass = computed(() => gsWidgetColourMapping[modelValue.value.selectedColor]);
+ * ```
+ * `<style scoped lang="scss">`:
+ * ```scss
+ * .gs-colour--beige { background-color: $gs-widget-beige; }
+ * .gs-colour--black { background-color: $gs-widget-black; }
+ * .gs-colour--blue  { background-color: $gs-widget-blue; }
+ * .gs-colour--green { background-color: $gs-widget-green; }
+ * .gs-colour--white { background-color: $gs-widget-white; }
+ * ```
+ */
+ export const gsWidgetColourMapping: Record<GSWidget_Data["selectedColour"], `gs-colour--${GSWidget_Data["selectedColour"]}`> = {
+    beige: `gs-colour--beige`,
+    black: `gs-colour--black`,
+    blue:  `gs-colour--blue`,
+    green: `gs-colour--green`,
+    white: `gs-colour--white`,
+};
+</script>
+
 <script setup lang="ts">
 import { computed } from "vue";
-import { GS_DTO_Widget_Colour, gsWidgetColourMapping, type GS_Client_Widget } from "~/stores/main.store";
 import { LogoGreensparkSvg, GSTooltip, GSColourSelect, type GSColourSelect_modelValue, IconInfoSvg, GSToggle, GSCheckbox } from "~/components";
 
 const props = withDefaults(defineProps<{
-    widget: GS_Client_Widget,
+    widget: GSWidget_Data,
 
-    defaultColour?: GS_DTO_Widget_Colour,
+    defaultColour?: GSWidget_Data["selectedColour"],
 }>(), {
     defaultColour: "white",
 });
 
 const emit = defineEmits<{
-    "changedActive": [id: GS_Client_Widget["id"], active: boolean],
+    "changedActive": [id: GSWidget_Data["id"], active: boolean],
 }>();
 
 /** NOTE(FOR REVIEWERS): placeholder, since there is no link data in the server response. */
@@ -83,15 +132,15 @@ const computed_linkedUrl = computed(() => {
 
 const computed_selectedColour = computed<GSColourSelect_modelValue>({
     get: () => {
-        return props.widget.selectedColor;
+        return props.widget.selectedColour;
     },
     set: (selectedColour) => {
         /** NOTE(FOR REVIEWERS): I am handling `null` just in case, see the comment on {@link GSColourSelect_modelValue} for the reasoning. */
-        props.widget.selectedColor = selectedColour ?? props.defaultColour;
+        props.widget.selectedColour = selectedColour ?? props.defaultColour;
     },
 });
 
-const computed_colourClass = computed(() => gsWidgetColourMapping[props.widget.selectedColor]);
+const computed_colourClass = computed(() => gsWidgetColourMapping[props.widget.selectedColour]);
 
 </script>
 

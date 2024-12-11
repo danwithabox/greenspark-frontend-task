@@ -4,11 +4,10 @@ import vue from "@vitejs/plugin-vue";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { execa } from "execa";
 
-const port = process.env.PORT ? Number.parseInt(process.env.PORT) : 5202;
+const port = process.env.PORT ? Number.parseInt(process.env.PORT) : 5201;
 
 async function customCommands() {
-    console.info(`Running "npm run watch:gs-lib-ui"`);
-    execa({ stdout: ["pipe", "inherit"], stderr: ["pipe", "inherit"], })`npm run watch:gs-lib-ui`;
+    await execa({ stdout: ["pipe", "inherit"], stderr: ["pipe", "inherit"], })`npm run build:types`;
 }
 
 // https://vite.dev/config/
@@ -17,13 +16,29 @@ export default defineConfig({
         vue(),
         vueDevTools(),
         {
-            name:       "custom-commands",
-            apply:      "serve",
-            buildStart: async () => { await customCommands(); },
+            name:     "custom-commands",
+            buildEnd: async () => { await customCommands(); },
         },
     ],
     server: {
         port,
+    },
+    build: {
+        emptyOutDir: false,
+        lib:         {
+            name:    "@greenspark-task/lib-ui",
+            entry:   fileURLToPath(new URL("./src/index.ts", import.meta.url)),
+            formats: ["es", "umd"],
+        },
+        rollupOptions: {
+            external: ["vue"],
+            output:   {
+                // Provide global variables to use in the UMD build for externalized deps
+                globals: {
+                    vue: "Vue",
+                },
+            },
+        },
     },
     resolve: {
         alias: {
@@ -39,11 +54,6 @@ export default defineConfig({
                 additionalData: `@use "~/assets/scss/base.scss" as *;\n`,
             },
         },
-    },
-    optimizeDeps: {
-        exclude: [
-            "@greenspark-task/lib-ui",
-        ],
     },
 });
 

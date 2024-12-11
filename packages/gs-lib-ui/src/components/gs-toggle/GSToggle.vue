@@ -1,10 +1,11 @@
 <template>
-    <div class="gs-toggle"
+    <div ref="templateRef_tabindex" class="gs-toggle"
         :class="{
             'gs-toggle--toggled': modelValue,
         }"
         :tabindex="0"
         @click="_toggle()"
+        @mouseup="() => templateRef_tabindex?.blur()"
         @keydown.space.prevent="_toggle()"
     >
         <span class="gs-toggle--box">
@@ -14,7 +15,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 const modelValue = defineModel<boolean>({ default: false, });
+
+const templateRef_tabindex = ref<HTMLDivElement | null>(null);
 
 function _toggle() {
     modelValue.value = !modelValue.value;

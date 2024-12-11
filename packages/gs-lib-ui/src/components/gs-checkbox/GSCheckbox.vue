@@ -1,10 +1,11 @@
 <template>
-    <div class="gs-checkbox"
+    <div ref="templateRef_tabindex" class="gs-checkbox"
         :class="{
             'gs-checkbox--checked': modelValue,
         }"
         :tabindex="0"
         @click="_toggle()"
+        @mouseup="() => templateRef_tabindex?.blur()"
         @keydown.space.prevent="_toggle()"
     >
         <span class="gs-checkbox--box">
@@ -15,9 +16,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import { IconCheckSvg } from "~/components";
 
 const modelValue = defineModel<boolean>({ default: false, });
+
+const templateRef_tabindex = ref<HTMLDivElement | null>(null);
 
 function _toggle() {
     modelValue.value = !modelValue.value;

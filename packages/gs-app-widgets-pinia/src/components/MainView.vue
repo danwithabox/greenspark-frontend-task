@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
 import { useStore_Main } from "~/stores/main.store";
-import { GSWidget } from "~/components";
+import { GSWidget } from "@greenspark-task/lib-ui";
 
 const store_Main = useStore_Main();
 

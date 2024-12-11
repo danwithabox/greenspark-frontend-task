@@ -1,26 +1,29 @@
 <template>
-    <div class="gs-colour-select-block"
+    <div ref="templateRef_tabindex" class="gs-colour-select-block"
         :class="{
             'gs-colour-select-block--selected': modelValue_selected,
             [computed_colourClass]:             true,
         }"
         :tabindex="0"
         @click="_toggle()"
+        @mouseup="() => templateRef_tabindex?.blur()"
         @keydown.space.prevent="_toggle()"
     ></div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { gsWidgetColourMapping, type GS_DTO_Widget_Colour } from "~/stores/main.store";
+import { computed, ref } from "vue";
+import { gsWidgetColourMapping, type GSWidget_Data } from "../gs-widget/GSWidget.vue";
 
 const props = withDefaults(defineProps<{
-    colour:        GS_DTO_Widget_Colour,
+    colour:        GSWidget_Data["selectedColour"],
     deSelectable?: boolean,
 }>(), {
     deSelectable: false,
 });
 const modelValue_selected = defineModel<boolean>({ default: false, });
+
+const templateRef_tabindex = ref<HTMLDivElement | null>(null);
 
 function _toggle() {
     if (props.deSelectable) modelValue_selected.value = !modelValue_selected.value;
@@ -32,7 +35,7 @@ const computed_colourClass = computed(() => gsWidgetColourMapping[props.colour])
 
 <style scoped lang="scss">
 .gs-colour-select-block {
-    box-sizing: border-box;
+    cursor: pointer;
 
     --gs-colour-select-block-size: 16px;
     width: var(--gs-colour-select-block-size);

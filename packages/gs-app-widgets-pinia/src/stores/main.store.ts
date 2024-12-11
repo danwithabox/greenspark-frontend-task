@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { Type, type Static } from "@sinclair/typebox";
 import { Value } from "@sinclair/typebox/value";
 import { guardExhaustiveSwitchCase } from "~/utils";
+import type { GSWidget_Data } from "@greenspark-task/lib-ui";
 
 const storeId = "main";
 
@@ -42,25 +43,8 @@ export const GS_DTO_Widget = Type.Object({
 export type GS_DTO_Widget = Static<typeof GS_DTO_Widget>;
 //#endregion
 
-export type GS_Client_Widget = {
-    /** The id of the product widget, incremental integer. */
-    id:            number,
-    /** The type of impact. */
-    type:          string,
-    /** The amount of impact. */
-    amount:        number,
-    /**  The action which corresponds to an impact type. */
-    action:        GS_DTO_Widget_Offsets,
-    /** Describes if the widget (badge) is active. */
-    active:        boolean,
-    /** Describes if the widget is linked to the public profile. */
-    linked:        boolean,
-    /** Describes the current color of the widget. */
-    selectedColor: GS_DTO_Widget_Colour,
-};
-
 export interface IStore_Main {
-    widgets: GS_Client_Widget[],
+    widgets: GSWidget_Data[],
 }
 
 export const useStore_Main = defineStore(storeId, () => {
@@ -69,9 +53,9 @@ export const useStore_Main = defineStore(storeId, () => {
     };
     const state = ref(initialState);
 
-    function _map__GS_DTO_Widget__GS_Client_Widget(data: GS_DTO_Widget): GS_Client_Widget {
-        const { type: _type, ...rest } = data;
-        const type: GS_Client_Widget["type"] = (() => {
+    function _map__GS_DTO_Widget__GS_Client_Widget(data: GS_DTO_Widget): GSWidget_Data {
+        const { type: _type, selectedColor: selectedColour, ...rest } = data;
+        const impactType: GSWidget_Data["impactType"] = (() => {
             const pluralize = rest.amount !== 1;
             switch (_type) {
                 case "trees": return pluralize ? "trees" : "tree";
@@ -80,7 +64,7 @@ export const useStore_Main = defineStore(storeId, () => {
                 default: guardExhaustiveSwitchCase(_type); return _type;
             }
         })();
-        return { ...rest, type, };
+        return { ...rest, impactType, selectedColour, };
     }
 
     async function api_action_fetchData(): Promise<void> {
@@ -104,7 +88,7 @@ export const useStore_Main = defineStore(storeId, () => {
         //#endregion
     }
 
-    function action_setOnlyActiveWidget(id: GS_Client_Widget["id"], active: boolean) {
+    function action_setOnlyActiveWidget(id: GSWidget_Data["id"], active: boolean) {
         for (const widget of state.value.widgets) {
             if (widget.id === id) widget.active = active;
             else if (active) widget.active = false;
@@ -118,37 +102,6 @@ export const useStore_Main = defineStore(storeId, () => {
         action_setOnlyActiveWidget,
     };
 });
-
-/**
- * With this, we can map a colour literal to SCSS class names in a safe manner,
- * to keep the colour source of truth inside SCSS variables, instead of hard-coding copies of those colour variables in code.
- * 
- * E.g.:
- * 
- * `<template>`:
- * ```vue
- * <div :class="{ [computed_colourClass]: true, }"></div>
- * ```
- * `<script setup lang="ts">`:
- * ```ts
- * const computed_colourClass = computed(() => gsWidgetColourMapping[modelValue.value.selectedColor]);
- * ```
- * `<style scoped lang="scss">`:
- * ```scss
- * .gs-colour--beige { background-color: $gs-widget-beige; }
- * .gs-colour--black { background-color: $gs-widget-black; }
- * .gs-colour--blue  { background-color: $gs-widget-blue; }
- * .gs-colour--green { background-color: $gs-widget-green; }
- * .gs-colour--white { background-color: $gs-widget-white; }
- * ```
- */
-export const gsWidgetColourMapping: Record<GS_DTO_Widget_Colour, `gs-colour--${GS_DTO_Widget_Colour}`> = {
-    beige: `gs-colour--beige`,
-    black: `gs-colour--black`,
-    blue:  `gs-colour--blue`,
-    green: `gs-colour--green`,
-    white: `gs-colour--white`,
-};
 
 /** NOTE(FOR REVIEWERS): Placed this here for posterity, for when the fetch URL stops working. */
 function DATA_EXAMPLE(): GS_DTO_Widget[] {
