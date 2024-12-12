@@ -30,7 +30,6 @@ function _toggle() {
 </script>
 
 <style scoped lang="scss">
-@use "sass:color";
 
 .gs-checkbox {
     --gs-checkbox-size: 16px;

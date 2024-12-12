@@ -28,7 +28,6 @@ function _toggle() {
 </script>
 
 <style scoped lang="scss">
-@use "sass:color";
 
 .gs-toggle {
     --gs-toggle-width: 40px;
@@ -58,11 +57,10 @@ function _toggle() {
             width: var(--gs-toggle-height);
             background-color: $gs-shade-F9;
             outline: var(--gs-stroke-outline-width) solid $gs-stroke-light;
-            transition: transform 200ms;
-
         }
         .gs-toggle--circle {
             transform: translateX(0px);
+            transition: transform 200ms;
             @include shadow-sm;
         }
     }

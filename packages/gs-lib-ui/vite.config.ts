@@ -12,7 +12,9 @@ async function customCommands() {
 
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [
+    root:      "./",
+    publicDir: "public",
+    plugins:   [
         vue(),
         vueDevTools(),
         {
@@ -24,8 +26,7 @@ export default defineConfig({
         port,
     },
     build: {
-        emptyOutDir: false,
-        lib:         {
+        lib: {
             name:    "@greenspark-task/lib-ui",
             entry:   fileURLToPath(new URL("./src/index.ts", import.meta.url)),
             formats: ["es", "umd"],

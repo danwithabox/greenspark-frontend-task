@@ -17,11 +17,12 @@
             "require": "./dist/lib-ui.umd.cjs",
             "types": "./dist/index.d.ts"
         },
-        "./style.css": "./dist/style.css"
+        "./style.css": "./dist/style.css",
+        "./tailwind.css": "./dist/tailwind.css"
     },
     "scripts": {
         "start": "npm run dev",
-        "watch": "vite build --watch --clearScreen false",
+        "watch": "vite build --watch --clearScreen false --emptyOutDir false",
         "dev": "vite --host --force",
         "build": "vite build && npm run build:types",
         "build:types": "vue-tsc --emitDeclarationOnly --project tsconfig.build.json",

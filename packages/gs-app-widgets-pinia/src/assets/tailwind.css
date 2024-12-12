@@ -2,36 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    h1 {
-        @apply text-h1;
-    }
-
-    h2 {
-        @apply text-h2;
-        margin-bottom: 8px;
-        line-height: 36px;
-    }
-
-    h3 {
-        @apply text-h3;
-    }
-
-    h4 {
-        @apply text-h4;
-    }
-
-    h5 {
-        @apply text-h5;
-    }
-
-    h6 {
-        @apply text-h6;
-    }
-
-    body,
-    .v-popper__popper *,
-    .v-popper__inner div {
-        @apply text-md;
-    }
-}
+/*
+Use this file for additional tailwind CSS meant specifically for this package.
+Otherwise, edit the corresponding file in the UI library local package.
+*/
