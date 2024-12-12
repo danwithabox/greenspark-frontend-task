@@ -1,0 +1,4 @@
+export enum MutationTypes {
+    SET_WIDGETS = "SET_WIDGETS",
+    SET_ONLY_ACTIVE_WIDGET = "SET_ONLY_ACTIVE_WIDGET"
+}

@@ -1,0 +1,7 @@
+@use "../../../gs-lib-ui/src/assets/main.scss" as *;
+@use "./scss/base.scss" as *;
+
+// This file is not loaded for every component via the `preprocessorOptions` in `vite.config.ts`. For that, see `base.scss`.
+
+@import url("../../../gs-lib-ui/src/assets/tailwind.css");
+@import url("./tailwind.css");

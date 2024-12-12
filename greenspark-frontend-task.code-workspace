@@ -8,6 +8,9 @@
         },
         {
             "path": "packages/gs-app-widgets-pinia"
+        },
+        {
+            "path": "packages/gs-app-widgets-vuex"
         }
     ],
     "settings": {
@@ -21,7 +24,8 @@
             "defu",
             "greenspark",
             "Pinia",
-            "typeful"
+            "typeful",
+            "vuex"
         ]
     },
     "extensions": {

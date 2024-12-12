@@ -1,0 +1,4 @@
+@use "../../../../gs-lib-ui/src/assets/scss/base.scss" as *;
+@forward "../../../../gs-lib-ui/src/assets/scss/base.scss";
+
+// This file is loaded for every component via the `preprocessorOptions` in `vite.config.ts`. For other globals, see `main.scss`.

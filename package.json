@@ -23,6 +23,7 @@
     },
     "workspaces": [
         "packages/gs-lib-ui",
-        "packages/gs-app-widgets-pinia"
+        "packages/gs-app-widgets-pinia",
+        "packages/gs-app-widgets-vuex"
     ]
 }

@@ -1,14 +1,12 @@
 <template>
-    <div>
-        <div class="main-view--frame">
-            <h2 class="font-bold">Per product widgets</h2>
-            <hr>
-            <div class="main-view--widget-list flex flex-col flex-grow tablet:flex justify-between tablet:flex-row">
-                <GSWidget v-for="widget in computed_widgets" :key="widget.id"
-                    :widget
-                    @changed-active="(id, active) => store_Main.action_setOnlyActiveWidget(id, active)"
-                ></GSWidget>
-            </div>
+    <div class="main-view--frame">
+        <h2 class="font-bold">Per product widgets</h2>
+        <hr>
+        <div class="main-view--widget-list flex flex-col flex-grow tablet:flex justify-between tablet:flex-row">
+            <GSWidget v-for="widget in computed_widgets" :key="widget.id"
+                :widget
+                @changed-active="(id, active) => store_Main.action_setOnlyActiveWidget(id, active)"
+            ></GSWidget>
         </div>
     </div>
 </template>

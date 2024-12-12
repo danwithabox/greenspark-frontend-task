@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+Use this file for additional tailwind CSS meant specifically for this package.
+Otherwise, edit the corresponding file in the UI library local package.
+*/

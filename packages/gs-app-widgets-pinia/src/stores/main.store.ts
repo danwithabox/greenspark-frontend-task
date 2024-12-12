@@ -2,7 +2,6 @@ import { acceptHMRUpdate, defineStore } from "pinia";
 import { ref } from "vue";
 import { Type, type Static } from "@sinclair/typebox";
 import { Value } from "@sinclair/typebox/value";
-import { guardExhaustiveSwitchCase } from "~/utils";
 import type { GSWidget_Data } from "@greenspark-task/lib-ui";
 
 const storeId = "main";
@@ -61,7 +60,7 @@ export const useStore_Main = defineStore(storeId, () => {
                 case "trees": return pluralize ? "trees" : "tree";
                 case "carbon": return pluralize ? "kgs of carbon" : "kg of carbon";
                 case "plastic": return pluralize ? "plastic bottles" : "plastic bottle";
-                default: guardExhaustiveSwitchCase(_type); return _type;
+                default: return _type satisfies never;
             }
         })();
         return { ...rest, impactType, selectedColour, };

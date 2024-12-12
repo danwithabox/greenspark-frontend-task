@@ -61,19 +61,19 @@
 <script lang="ts">
 export type GSWidget_Data = {
     /** The id of the product widget, incremental integer. */
-    id:             number,
+    readonly id:         number,
     /** The type of impact. */
-    impactType:     string,
+    readonly impactType: string,
     /** The amount of impact. */
-    amount:         number,
+    readonly amount:     number,
     /**  The action which corresponds to an impact type. */
-    action:         "collects" | "plants" | "offsets",
+    readonly action:     "collects" | "plants" | "offsets",
     /** Describes if the widget (badge) is active. */
-    active:         boolean,
+    active:              boolean,
     /** Describes if the widget is linked to the public profile. */
-    linked:         boolean,
+    linked:              boolean,
     /** Describes the current color of the widget. */
-    selectedColour: "white" | "black" | "blue" | "green" | "beige",
+    selectedColour:      "white" | "black" | "blue" | "green" | "beige",
 };
 
 /**
