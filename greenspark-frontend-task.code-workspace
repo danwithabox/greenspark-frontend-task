@@ -25,6 +25,7 @@
             "greenspark",
             "Pinia",
             "typeful",
+            "vitest",
             "vuex"
         ]
     },

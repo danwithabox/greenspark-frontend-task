@@ -3,7 +3,7 @@ import GSColourSelect, { type GSColourSelect_modelValue } from "./gs-colour-sele
 import GSColourSelectItem from "./gs-colour-select/GSColourSelectItem.vue";
 import GSToggle from "./gs-toggle/GSToggle.vue";
 import GSTooltip from "./gs-tooltip/GSTooltip.vue";
-import GSWidget, { type GSWidget_Data } from "./gs-widget/GSWidget.vue";
+import GSWidget, { gsWidgetColourMapping, type GSWidget_Data } from "./gs-widget/GSWidget.vue";
 import IconCheckSvg from "./icons/IconCheck.svg.vue";
 import IconInfoSvg from "./icons/IconInfo.svg.vue";
 import LogoGreensparkSvg from "./icons/LogoGreenspark.svg.vue";
@@ -16,6 +16,7 @@ export {
     GSToggle,
     GSTooltip,
     GSWidget,
+    gsWidgetColourMapping,
     type GSWidget_Data,
     IconCheckSvg,
     IconInfoSvg,

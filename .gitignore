@@ -25,5 +25,11 @@ logs
 .secrets
 .variables
 
+#Vite
+vitest.config.ts.timestamp-*.mjs
+
+# Vitest
+coverage
+
 # Temp folder
 .temp/

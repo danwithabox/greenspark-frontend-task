@@ -20,7 +20,7 @@ export type GSColourSelect_modelValue = GSWidget_Data["selectedColour"] | null;
 import { tupleExhaustiveOf } from "@danwithabox/typeful-tuples";
 import { GSColourSelectItem, type GSWidget_Data } from "~/components";
 
-/** NOTE(FOR REVIEWERS): Fun type safety stuff with my own NPM package: comment out a colour, or add an extra colour to the DTO schema, and see TypeScript warn you of your mistake! */
+/** NOTE(FOR REVIEWERS): Fun type safety feature courtesy of my own NPM package: comment out a colour, or add an extra colour to the DTO schema, and see TypeScript warn you of your mistake! */
 const _allPossibleColours = tupleExhaustiveOf<GSWidget_Data["selectedColour"]>()([
     "blue",
     "green",

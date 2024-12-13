@@ -42,6 +42,8 @@ export const GS_DTO_Widget = Type.Object({
 export type GS_DTO_Widget = Static<typeof GS_DTO_Widget>;
 //#endregion
 
+export const DATA_URL = `https://b795b019-1f84-41f4-93a3-a702d686c75a.mock.pstmn.io/product-widgets`;
+
 export interface IStore_Main {
     widgets: GSWidget_Data[],
 }
@@ -67,10 +69,7 @@ export const useStore_Main = defineStore(storeId, () => {
     }
 
     async function api_action_fetchData(): Promise<void> {
-        /** NOTE(FOR REVIEWERS): I assume this is just a placeholder for a well-integrated REST API, so I'm not going to parameterize it. */
-        const url = `https://b795b019-1f84-41f4-93a3-a702d686c75a.mock.pstmn.io/product-widgets`;
-
-        const data = await (await fetch(url, { method: "GET", })).json();
+        const data = await (await fetch(DATA_URL, { method: "GET", })).json();
 
         const expectedSchema = Type.Array(GS_DTO_Widget);
         if (!Value.Check(expectedSchema, data)) {
@@ -101,37 +100,6 @@ export const useStore_Main = defineStore(storeId, () => {
         action_setOnlyActiveWidget,
     };
 });
-
-/** NOTE(FOR REVIEWERS): Placed this here for posterity, for when the fetch URL stops working. */
-function DATA_EXAMPLE(): GS_DTO_Widget[] {
-    return [{
-        "id":            1,
-        "type":          "carbon",
-        "amount":        2,
-        "action":        "offsets",
-        "active":        false,
-        "linked":        false,
-        "selectedColor": "green",
-    },
-    {
-        "id":            2,
-        "type":          "trees",
-        "amount":        15,
-        "action":        "plants",
-        "active":        true,
-        "linked":        false,
-        "selectedColor": "black",
-    },
-    {
-        "id":            3,
-        "type":          "plastic",
-        "amount":        300,
-        "action":        "collects",
-        "active":        true,
-        "linked":        true,
-        "selectedColor": "beige",
-    }];
-}
 
 if (import.meta.hot) {
     import.meta.hot.accept(acceptHMRUpdate(useStore_Main, import.meta.hot));

@@ -1,8 +1,8 @@
 <template>
-    <div ref="templateRef_tabindex" class="gs-colour-select-block"
+    <div ref="templateRef_tabindex" class="gs-colour-select-item"
         :class="{
-            'gs-colour-select-block--selected': modelValue_selected,
-            [computed_colourClass]:             true,
+            'gs-colour-select-item--selected': modelValue_selected,
+            [computed_colourClass]:            true,
         }"
         :tabindex="0"
         @click="_toggle()"
@@ -34,18 +34,18 @@ const computed_colourClass = computed(() => gsWidgetColourMapping[props.colour])
 </script>
 
 <style scoped lang="scss">
-.gs-colour-select-block {
+.gs-colour-select-item {
     cursor: pointer;
 
-    --gs-colour-select-block-size: 16px;
-    width: var(--gs-colour-select-block-size);
-    min-width: var(--gs-colour-select-block-size);
-    max-width: var(--gs-colour-select-block-size);
-    height: var(--gs-colour-select-block-size);
-    min-height: var(--gs-colour-select-block-size);
-    max-height: var(--gs-colour-select-block-size);
+    --gs-colour-select-item-size: 16px;
+    width: var(--gs-colour-select-item-size);
+    min-width: var(--gs-colour-select-item-size);
+    max-width: var(--gs-colour-select-item-size);
+    height: var(--gs-colour-select-item-size);
+    min-height: var(--gs-colour-select-item-size);
+    max-height: var(--gs-colour-select-item-size);
 
-    &.gs-colour-select-block--selected {
+    &.gs-colour-select-item--selected {
         border: 1px solid $gs-shade-B0;
     }
     &:hover, &:focus-visible, &:focus-within {

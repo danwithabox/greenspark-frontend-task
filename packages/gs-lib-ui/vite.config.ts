@@ -18,7 +18,11 @@ export default defineConfig({
         vue(),
         vueDevTools(),
         {
-            name:     "custom-commands",
+            name:  "custom-commands",
+            apply: (config, env) => {
+                if (process.env.VITEST) return false;
+                return true;
+            },
             buildEnd: async () => { await customCommands(); },
         },
     ],

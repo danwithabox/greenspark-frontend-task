@@ -19,6 +19,12 @@
 import { ref } from "vue";
 import { IconCheckSvg } from "~/components";
 
+/**
+ * NOTE(FOR REVIEWERS): if it's important for accessibility, screen readers, or any such thing,
+ * I can (and have in the past) implemented custom elements that aren't just a bunch of <div>s, but mask the appropriate HTML inputs.
+ * However, I kept it quick and simple for this technical task.
+ */
+
 const modelValue = defineModel<boolean>({ default: false, });
 
 const templateRef_tabindex = ref<HTMLDivElement | null>(null);

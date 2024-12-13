@@ -21,13 +21,12 @@ export interface Actions {
     ): Promise<GSWidget_Data[]>,
 }
 
+export const DATA_URL = `https://b795b019-1f84-41f4-93a3-a702d686c75a.mock.pstmn.io/product-widgets`;
+
 export const actions: ActionTree<State, State> & Actions = {
     async [ActionTypes.FETCH_DATA]({ commit, }) {
         async function api_action_fetchData(): Promise<GSWidget_Data[]> {
-            /** NOTE(FOR REVIEWERS): I assume this is just a placeholder for a well-integrated REST API, so I'm not going to parameterize it. */
-            const url = `https://b795b019-1f84-41f4-93a3-a702d686c75a.mock.pstmn.io/product-widgets`;
-
-            const data = await (await fetch(url, { method: "GET", })).json();
+            const data = await (await fetch(DATA_URL, { method: "GET", })).json();
 
             const expectedSchema = Type.Array(GS_DTO_Widget);
             if (!Value.Check(expectedSchema, data)) {

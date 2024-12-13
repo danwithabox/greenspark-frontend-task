@@ -1,5 +1,11 @@
 # @greenspark-task/app-widgets-pinia
 
+## 0.1.5
+
+### Patch Changes
+
+- chore: bumping to keep versions synced
+
 ## 0.1.4
 
 ### Patch Changes
