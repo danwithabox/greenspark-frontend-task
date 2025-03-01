@@ -9,7 +9,7 @@
         @keydown.space.prevent="_toggle()"
     >
         <span class="gs-checkbox--box">
-            <IconCheckSvg class="gs-checkbox--checkmark"></IconCheckSvg>
+            <IconCheckSvg class="gs-checkbox--check-mark"></IconCheckSvg>
             <div class="gs-checkbox--hover-circle"></div>
         </span>
     </div>
@@ -57,7 +57,7 @@ function _toggle() {
         background-color: $gs-shade-F9;
         border: var(--gs-stroke-border-width) solid #000;
 
-        .gs-checkbox--checkmark {
+        .gs-checkbox--check-mark {
             position: absolute;
             top: 0;
             left: 0;
@@ -85,7 +85,7 @@ function _toggle() {
             background-color: $gs-green;
             border-color: $gs-green;
         }
-        .gs-checkbox--checkmark {
+        .gs-checkbox--check-mark {
             visibility: visible;
         }
 

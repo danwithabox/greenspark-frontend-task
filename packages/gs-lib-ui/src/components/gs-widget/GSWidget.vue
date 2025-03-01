@@ -11,8 +11,8 @@
                         <LogoGreensparkSvg></LogoGreensparkSvg>
                     </div>
                     <div class="gs-widget--header-text">
-                        <div>This product {{ widget.action }}</div>
-                        <div class="text-lg font-bold">{{ widget.amount }}&nbsp;{{ widget.impactType }}</div>
+                        <div>This product {{ props.widget.action }}</div>
+                        <div class="text-lg font-bold">{{ props.widget.amount }}&nbsp;{{ props.widget.impactType }}</div>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     </GSTooltip>
                 </span>
                 <span class="mr-[2px]">
-                    <GSCheckbox v-model="widget.linked"></GSCheckbox>
+                    <GSCheckbox v-model="props.widget.linked"></GSCheckbox>
                 </span>
             </div>
             <div class="flex justify-between">
@@ -49,8 +49,8 @@
                 <span>Activate badge</span>
                 <span class="mr-[2px]">
                     <GSToggle
-                        :model-value="widget.active"
-                        @update:model-value="(active) => emit('changedActive', widget.id, active)"
+                        :model-value="props.widget.active"
+                        @update:model-value="(active) => emit('changedActive', props.widget.id, active)"
                     ></GSToggle>
                 </span>
             </div>
